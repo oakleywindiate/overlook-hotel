@@ -1,9 +1,9 @@
 import {expect} from 'chai';
 import Customer from '../src/classes/Customer';
-import {customerData, customer, rooms, bookings} from './mock-data'
+import {customerData, customer, rooms, bookingsData} from './mock-data'
 
 describe('Customer', () => {
-  let customerData, rooms, bookings, customer1, customer2;
+  let customerData, rooms, bookingsData, customer1, customer2;
 
   beforeEach(() => {
 
@@ -29,7 +29,7 @@ describe('Customer', () => {
 // ---------------- VARIABLES ---------------- //
 
       customer1 = new Customer(customerData);
-      customer2 = new Customer(customerData;
+      customer2 = new Customer(customerData);
   });
 
 // ---------------- TESTING ---------------- //
