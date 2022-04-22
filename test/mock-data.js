@@ -1,6 +1,6 @@
 // ---------------- MOCK DATA ---------------- //
 
-let customers = [
+let customerData = [
   {
     "id": 1,
     "name": "Leatha Ullrich"
@@ -18,6 +18,14 @@ let customers = [
     "name": "Kennedi Emard"
   },
 ];
+
+let customer = [
+  {
+    "id": 1,
+    "name": "Leatha Ullrich"
+  },
+];
+
 
 
 let rooms = [
@@ -83,4 +91,4 @@ let bookings = [
 ];
 
 
-export {customers, rooms, bookings}
+export {customerData, customer, rooms, bookings};
