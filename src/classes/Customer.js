@@ -2,7 +2,8 @@
 // import Ingredient from './Ingredient'
 
 class Customer {
-  constructor() {
+  constructor(customerData) {
+    this.customerData = customerData;
   }
 };
 

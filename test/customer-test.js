@@ -1,24 +1,54 @@
-import { expect } from 'chai';
+import {expect} from 'chai';
 import Customer from '../src/classes/Customer';
-import {customers, rooms, bookings} from './mock-data'
+import {customerData, customer, rooms, bookings} from './mock-data'
 
-describe('User', () => {
-  let user1, recipeRepository, ingredientData;
+describe('Customer', () => {
+  let customerData, rooms, bookings, customer1, customer2;
 
   beforeEach(() => {
-    recipeRepository = new RecipeRepository(recipeData);
-    user1 = new User(user);
-    ingredientData = new Ingredient(ingredientsData)
+
+    customerData = [
+      {
+        "id": 1,
+        "name": "Leatha Ullrich"
+      },
+      {
+        "id": 2,
+        "name": "Rocio Schuster"
+      },
+      {
+        "id": 3,
+        "name": "Kelvin Schiller"
+      },
+      {
+        "id": 4,
+        "name": "Kennedi Emard"
+      },
+    ];
+
+// ---------------- VARIABLES ---------------- //
+
+      customer1 = new Customer(customerData);
+      customer2 = new Customer(customerData;
   });
+
+// ---------------- TESTING ---------------- //
 
   it('should be a function', () => {
-    expect(User).to.be.a('function');
+    expect(Customer).to.be.a('function');
   });
 
-  it('should be an instance of a User', () => {
-    expect(user1).to.be.an.instanceof(User);
+  it('should be an instance of a Customer', () => {
+    expect(customer1).to.be.an.instanceof(Customer);
   });
 
-  it('should be able to take in a user data set', () => {
-    expect(user1.userData).to.equal(user);
+  it('should have an id', () => {
+    expect(customer1.customerData[0].id).to.equal(1);
+    expect(customer1.customerData[1].id).to.equal(2);
   });
+
+  it('should have a name', () => {
+    expect(customer1.customerData[0].name).to.equal('Leatha Ullrich');
+    expect(customer1.customerData[1].name).to.equal('Rocio Schuster');
+  });
+});
