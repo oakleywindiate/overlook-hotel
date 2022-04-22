@@ -63,7 +63,7 @@ let rooms = [
   },
 ];
 
-let bookings = [
+let bookingsData = [
   {
     "id": "5fwrgu4i7k55hl6sz",
     "userID": 9,
@@ -91,4 +91,4 @@ let bookings = [
 ];
 
 
-export {customerData, customer, rooms, bookings};
+export {customerData, customer, rooms, bookingsData};
