@@ -30,25 +30,25 @@ describe('Bookings', () => {
     bookingsData = [
       {
         "id": "5fwrgu4i7k55hl6sz",
-        "userID": 9,
+        "userID": 1,
         "date": "2022/04/22",
         "roomNumber": 15
       },
       {
         "id": "5fwrgu4i7k55hl6t5",
-        "userID": 43,
+        "userID": 2,
         "date": "2022/01/24",
         "roomNumber": 24
       },
       {
         "id": "5fwrgu4i7k55hl6t6",
-        "userID": 13,
+        "userID": 3,
         "date": "2022/01/10",
         "roomNumber": 12
       },
       {
         "id": "5fwrgu4i7k55hl6t7",
-        "userID": 20,
+        "userID": 4,
         "date": "2022/02/16",
         "roomNumber": 7
       },
@@ -80,8 +80,8 @@ describe('Bookings', () => {
   });
 
   it('should have a userID', () => {
-    expect(booking1.bookingsData[0].userID).to.equal(9);
-    expect(booking2.bookingsData[1].userID).to.equal(43);
+    expect(booking1.bookingsData[0].userID).to.equal(1);
+    expect(booking2.bookingsData[1].userID).to.equal(2);
   });
 
   it('should have a data', () => {
