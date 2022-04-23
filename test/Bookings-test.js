@@ -93,4 +93,23 @@ describe('Bookings', () => {
     expect(booking1.bookingsData[0].roomNumber).to.equal(15);
     expect(booking2.bookingsData[1].roomNumber).to.equal(24);
   });
+
+  it('should be able to find a userID', () => {
+    expect(booking1.findUserId(1)).to.deep.equal([
+  {
+    "id": '5fwrgu4i7k55hl6sz',
+    "userID": 1,
+    "date": '2022/04/22',
+    "roomNumber": 15
+  }
+]);
+    expect(booking2.findUserId(2)).to.deep.equal([
+  {
+    "id": '5fwrgu4i7k55hl6t5',
+    "userID": 2,
+    "date": '2022/01/24',
+    "roomNumber": 24
+  }
+]);
+  });
 });
