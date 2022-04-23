@@ -1,10 +1,10 @@
 import {expect} from 'chai';
 import Bookings from '../src/classes/Bookings';
 import Customer from '../src/classes/Customer';
-import {customerData, customer, rooms, bookingsData} from './mock-data'
+import {customerData, customer, roomsData, bookingsData} from './mock-data'
 
 describe('Bookings', () => {
-  let customerData, rooms, bookingsData, customer1, customer2, booking1, booking2;
+  let customerData, roomsData, bookingsData, customer1, customer2, booking1, booking2;
 
   beforeEach(() => {
 
@@ -60,7 +60,7 @@ describe('Bookings', () => {
       customer2 = new Customer(customerData);
 
       booking1 = new Bookings(bookingsData);
-      booking2 = new Bookings(bookingsData)
+      booking2 = new Bookings(bookingsData);
 
   });
 

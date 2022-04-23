@@ -28,7 +28,7 @@ let customer = [
 
 
 
-let rooms = [
+let roomsData = [
   {
     "number": 1,
     "roomType": "residential suite",
@@ -91,4 +91,4 @@ let bookingsData = [
 ];
 
 
-export {customerData, customer, rooms, bookingsData};
+export {customerData, customer, roomsData, bookingsData};
