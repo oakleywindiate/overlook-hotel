@@ -2,7 +2,7 @@ class Rooms {
   constructor(roomsData) {
     this.roomsData = roomsData;
   }
-  findRoomNumber(id) {
+  findNumber(id) {
     return this.roomsData.filter(rooms => rooms.number === id)
   }
 };
