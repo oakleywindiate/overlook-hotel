@@ -159,7 +159,7 @@ describe('Rooms', () => {
 
   it('should find a specific room number', () => {
 
-    expect(room1.findRoomNumber(1)).to.deep.equal([
+    expect(room1.findNumber(1)).to.deep.equal([
       {
         "number": 1,
         "roomType": "residential suite",
@@ -169,7 +169,7 @@ describe('Rooms', () => {
         "costPerNight": 358.4
       }
     ]);
-    expect(room2.findRoomNumber(3)).to.deep.equal([
+    expect(room2.findNumber(3)).to.deep.equal([
       {
         "number": 3,
         "roomType": "single room",
