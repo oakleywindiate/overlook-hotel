@@ -8,5 +8,6 @@ import './css/styles.css';
 import './images/turing-logo.png'
 
 import Customer from './classes/Customer';
-
+import apiCalls from './apiCalls';
+import {fetchData}
 console.log('This is the JavaScript entry file - your code begins here.');

@@ -5,6 +5,9 @@ class Customer {
   constructor(customerData) {
     this.customerData = customerData;
   }
+  displayAllRoomBookings(id) {
+    
+  }
 };
 
 export default Customer;
