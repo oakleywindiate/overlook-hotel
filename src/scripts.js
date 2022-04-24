@@ -8,6 +8,7 @@ import './css/styles.css';
 import './images/turing-logo.png'
 
 import Customer from './classes/Customer';
-import Bookings from '.classes/Bookings'
+import Bookings from '.classes/Bookings';
+import Rooms from '.classes/Rooms';
 import apiCalls from './apiCalls';
 import {fetchData}
