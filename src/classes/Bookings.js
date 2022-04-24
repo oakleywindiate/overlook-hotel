@@ -4,8 +4,15 @@ class Bookings {
   }
 
   findUserId(id) {
-    const filterCustomerId = this.bookingsData.filter(booking => booking.userID === id)
-    return filterCustomerId
+  return Number(this.bookingsData.filter(booking => booking.userID === id).map(obj => obj.userID))
+  }
+
+  findUserObject(id) {
+    return this.bookingsData.filter(booking => booking.userID === id)
+  }
+
+  findRoomNumber(id) {
+    return Number(this.bookingsData.filter(booking => booking.roomNumber === id).map(obj => obj.roomNumber))
   }
 };
 
