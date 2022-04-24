@@ -32,25 +32,25 @@ describe('Bookings', () => {
         "id": "5fwrgu4i7k55hl6sz",
         "userID": 1,
         "date": "2022/04/22",
-        "roomNumber": 15
+        "roomNumber": 1
       },
       {
         "id": "5fwrgu4i7k55hl6t5",
         "userID": 2,
         "date": "2022/01/24",
-        "roomNumber": 24
+        "roomNumber": 2
       },
       {
         "id": "5fwrgu4i7k55hl6t6",
         "userID": 3,
         "date": "2022/01/10",
-        "roomNumber": 12
+        "roomNumber": 3
       },
       {
         "id": "5fwrgu4i7k55hl6t7",
         "userID": 4,
         "date": "2022/02/16",
-        "roomNumber": 7
+        "roomNumber": 4
       },
     ];
 
@@ -90,26 +90,23 @@ describe('Bookings', () => {
   });
 
   it('should have a room number', () => {
-    expect(booking1.bookingsData[0].roomNumber).to.equal(15);
-    expect(booking2.bookingsData[1].roomNumber).to.equal(24);
+    expect(booking1.bookingsData[0].roomNumber).to.equal(1);
+    expect(booking2.bookingsData[1].roomNumber).to.equal(2);
   });
 
-  it('should be able to find a userID', () => {
-    expect(booking1.findUserId(1)).to.deep.equal([
-      {
-        "id": '5fwrgu4i7k55hl6sz',
-        "userID": 1,
-        "date": '2022/04/22',
-        "roomNumber": 15
-      }
-    ]);
-    expect(booking2.findUserId(2)).to.deep.equal([
-      {
-        "id": '5fwrgu4i7k55hl6t5',
-        "userID": 2,
-        "date": '2022/01/24',
-        "roomNumber": 24
-      }
-    ]);
+  it('should be able to find a a customer based on userID', () => {
+    expect(booking1.findUserId(1)).to.deep.equal(1);
+    expect(booking2.findUserId(2)).to.deep.equal(2);
+  });
+
+  it('should find the total amount a specific customer has spent', () => {
+
+    expect(booking1.findUserObject(1)).to.equal(1);
+    expect(booking2.findUserObject(8)).to.equal(2);
+  });
+
+  it('should be able to find a room based on room number', () => {
+    expect(booking1.findRoomNumber(1)).to.equal(1);
+    expect(booking2.findRoomNumber(2)).to.equal(2);
   });
 });
