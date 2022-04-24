@@ -99,12 +99,6 @@ describe('Bookings', () => {
     expect(booking2.findUserId(2)).to.deep.equal(2);
   });
 
-  it('should find the total amount a specific customer has spent', () => {
-
-    expect(booking1.findUserObject(1)).to.equal(1);
-    expect(booking2.findUserObject(8)).to.equal(2);
-  });
-
   it('should be able to find a room based on room number', () => {
     expect(booking1.findRoomNumber(1)).to.equal(1);
     expect(booking2.findRoomNumber(2)).to.equal(2);
