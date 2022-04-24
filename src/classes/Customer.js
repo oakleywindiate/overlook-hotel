@@ -8,16 +8,25 @@ class Customer {
   }
 
   findCustomerId(id) {
+    return Number(this.customerData.filter(customer => customer.id === id).map(obj => obj.id))
+  }
+
+  findCustomerObject(id) {
     return this.customerData.filter(customer => customer.id === id)
   }
 
-  displayAllRoomBookings(id, bookingsData) {
-    return (this.findCustomerId(id).id === bookingsData.findUserId(id).userID) ? this.rooms.push(bookingsData.findUserId(id)) : null;
+  displayAllRoomBookings(id, bookingData) {
+    this.rooms.push(bookingData.findUserObject(id))
   }
 
-  amountSpent(id, roomsData) {
-    // compare room number from bookings with room number from roomData
-    // reduce
+  totalAmountSpent(id, roomData, bookingData) {
+    const findNumber = bookingData.findUserObject(id).map(obj => obj.roomNumber).reduce((acc, number) => {
+      if (number === roomData.findNumber(number)) {
+        acc += (roomData.findRoomCostPerNight(number))
+      }
+      return acc
+    }, 0)
+    return +findNumber.toFixed(2)
   }
 };
 
