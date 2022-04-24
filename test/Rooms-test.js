@@ -157,31 +157,8 @@ describe('Rooms', () => {
   });
 
   it('should find a specific room number', () => {
-    expect(roomsData1.findNumber(1)).to.deep.equal([
-        {
-          "number": 1,
-          "roomType": "residential suite",
-          "bidet": true,
-          "bedSize": "queen",
-          "numBeds": 1,
-          "costPerNight": 358.4
-        }
-    ]);
-    expect(roomsData2.findNumber(3)).to.deep.equal([
-        {
-          "number": 3,
-          "roomType": "single room",
-          "bidet": false,
-          "bedSize": "king",
-          "numBeds": 1,
-          "costPerNight": 491.14
-        }
-      ]);
-    });
-
-  it('should know the total cost for all customers', () => {
-    expect(roomsData1.amountSpent(1, booking1)).to.equal(358.4);
-    expect(roomsData2.amountSpent(8, booking1)).to.equal(477.38);
+    expect(roomsData1.findNumber(1)).to.deep.equal(1);
+    expect(roomsData2.findNumber(3)).to.deep.equal(3);
     });
 
   it('should return the room number', () => {
