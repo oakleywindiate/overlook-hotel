@@ -189,4 +189,9 @@ describe('Rooms', () => {
     expect(roomsData2.findNumber(2)).to.equal(2);
     });
 
+  it('should return the room cost per night based on number', () => {
+    expect(roomsData1.findRoomCostPerNight(1)).to.equal(358.4);
+    expect(roomsData2.findRoomCostPerNight(2)).to.equal(477.38);
+    });
+
 });
