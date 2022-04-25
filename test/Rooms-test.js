@@ -12,8 +12,8 @@ describe('Rooms', () => {
   customer2,
   booking1,
   booking2,
-  room1,
-  room2;
+  roomsData1,
+  roomsData2;
 
   beforeEach(() => {
 
@@ -41,25 +41,25 @@ describe('Rooms', () => {
         "id": "5fwrgu4i7k55hl6sz",
         "userID": 9,
         "date": "2022/04/22",
-        "roomNumber": 15
+        "roomNumber": 1
       },
       {
         "id": "5fwrgu4i7k55hl6t5",
         "userID": 43,
         "date": "2022/01/24",
-        "roomNumber": 24
+        "roomNumber": 2
       },
       {
         "id": "5fwrgu4i7k55hl6t6",
         "userID": 13,
         "date": "2022/01/10",
-        "roomNumber": 12
+        "roomNumber": 3
       },
       {
         "id": "5fwrgu4i7k55hl6t7",
         "userID": 20,
         "date": "2022/02/16",
-        "roomNumber": 7
+        "roomNumber": 1
       },
     ];
 
@@ -105,10 +105,9 @@ describe('Rooms', () => {
       customer2 = new Customer(customerData);
 
       booking1 = new Bookings(bookingsData);
-      booking2 = new Bookings(bookingsData);
 
-      room1 = new Rooms(roomsData);
-      room2 = new Rooms(roomsData);
+      roomsData1 = new Rooms(roomsData);
+      roomsData2 = new Rooms(roomsData);
 
   });
 
@@ -119,36 +118,57 @@ describe('Rooms', () => {
   });
 
   it('should be an instance of a Customer', () => {
-    expect(room1).to.be.an.instanceof(Rooms);
+    expect(roomsData1).to.be.an.instanceof(Rooms);
   });
 
   it('should have a number', () => {
-    expect(room1.roomsData[0].number).to.equal(1);
-    expect(room2.roomsData[1].number).to.equal(2);
+    expect(roomsData1.roomsData[0].number).to.equal(1);
+    expect(roomsData2.roomsData[1].number).to.equal(2);
   });
 
   it('should have a room type', () => {
-    expect(room1.roomsData[0].roomType).to.equal("residential suite");
-    expect(room2.roomsData[1].roomType).to.equal("suite");
+    expect(roomsData1.roomsData[0].roomType).to.equal("residential suite");
+    expect(roomsData2.roomsData[1].roomType).to.equal("suite");
   });
 
   it('should know if it has a bidet or not', () => {
-    expect(room1.roomsData[0].bidet).to.equal(true);
-    expect(room2.roomsData[1].bidet).to.equal(false);
+    expect(roomsData1.roomsData[0].bidet).to.equal(true);
+    expect(roomsData2.roomsData[1].bidet).to.equal(false);
   });
 
   it('should have a bed size', () => {
-    expect(room1.roomsData[0].bedSize).to.equal("queen");
-    expect(room2.roomsData[1].bedSize).to.equal("full");
+    expect(roomsData1.roomsData[0].bedSize).to.equal("queen");
+    expect(roomsData2.roomsData[1].bedSize).to.equal("full");
   });
 
   it('should know the number of beds', () => {
-    expect(room1.roomsData[0].numBeds).to.equal(1);
-    expect(room2.roomsData[1].numBeds).to.equal(2);
+    expect(roomsData1.roomsData[0].numBeds).to.equal(1);
+    expect(roomsData2.roomsData[1].numBeds).to.equal(2);
   });
 
   it('should know the cost per night', () => {
-    expect(room1.roomsData[0].costPerNight).to.equal(358.4);
-    expect(room2.roomsData[1].costPerNight).to.equal(477.38);
+    expect(roomsData1.roomsData[0].costPerNight).to.equal(358.4);
+    expect(roomsData2.roomsData[1].costPerNight).to.equal(477.38);
   });
+
+  it('should know the cost per night', () => {
+    expect(roomsData1.roomsData[0].costPerNight).to.equal(358.4);
+    expect(roomsData2.roomsData[1].costPerNight).to.equal(477.38);
+  });
+
+  it('should find a specific room number', () => {
+    expect(roomsData1.findNumber(1)).to.deep.equal(1);
+    expect(roomsData2.findNumber(3)).to.deep.equal(3);
+    });
+
+  it('should return the room number', () => {
+    expect(roomsData1.findNumber(1)).to.equal(1);
+    expect(roomsData2.findNumber(2)).to.equal(2);
+    });
+
+  it('should return the room cost per night based on number', () => {
+    expect(roomsData1.findRoomCostPerNight(1)).to.equal(358.4);
+    expect(roomsData2.findRoomCostPerNight(2)).to.equal(477.38);
+    });
+
 });
