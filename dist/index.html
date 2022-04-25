@@ -8,17 +8,26 @@
   <title>The Overlook Hotel</title>
 </head>
 <body>
-  <form>
-    <input class="calendar-form" id="check-in-calendar" type="date" placeholder="CHECK IN" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d">
-    <input class="calendar-form" id="check-out-calendar" type="date" placeholder="CHECK OUT" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d">
-    <div>
-      <button type="submit" class="check-in-button">Search</button>
-    </div>
-  </form>
+  <nav>
+    <form>
+      <input class="calendar-form" id="check-in-calendar" type="date" placeholder="CHECK IN" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d">
+      <input class="calendar-form" id="check-out-calendar" type="date" placeholder="CHECK OUT" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d">
+      <div>
+        <button type="submit" class="check-in-button">Search</button>
+      </div>
+    </form>
+  </nav>
+  <main>
+    <section class="display-customer-bookings">
+      <section class="display-bookings">
+        <!-- customer details inject here -->
+      </section>
+      <section class="display-customer-amount-spent">
+      </section>
+    </section>
+  </main>
   <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
 
   <script src="bundle.js"></script>
-  <script>flatpickr("input[type=date]", {});</script>
-
 </body>
 </html>
