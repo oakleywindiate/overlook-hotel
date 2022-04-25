@@ -12,7 +12,7 @@ class Bookings {
   }
 
   findRoomNumber(id) {
-    return Number(this.bookingsData.filter(booking => booking.roomNumber === id).map(obj => obj.roomNumber))
+    return this.bookingsData.filter(booking => booking.userID === id).map(obj => obj.roomNumber)
   }
 };
 
