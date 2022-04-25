@@ -5,7 +5,7 @@ import Bookings from './classes/Bookings';
 import Rooms from './classes/Rooms';
 import apiCalls from './apiCalls';
 import flatpickr from "flatpickr";
-import {fetchData} from './apiCalls.js';
+import {fetchData, addBooking} from './apiCalls.js';
 import 'flatpickr/dist/flatpickr.css';
 require("flatpickr/dist/themes/dark.css");
 
@@ -27,6 +27,7 @@ let searchRoomType = document.querySelector('.display-room-type-search');
 let modal = document.querySelector('.modal');
 let close = document.querySelector('.close');
 let modalContent = document.querySelector('.modal-content');
+let bookRoom = document.querySelector('.book-room');
 
 // ---------------- GLOBAL VARIABLES ---------------- //
 
@@ -66,7 +67,7 @@ const createInstances = (data) => {
 };
 
 const displayCustomerInfomation = (id, bookingRepo, roomsRepo) => {
-  return bookingRepo.findUserObject(id).forEach(booking => {
+  return bookingRepo.findBookingObject(id).forEach(booking => {
     roomsRepo.findRoomObject(booking.roomNumber).map(room => {
       injectBookings.innerHTML += `
       <section class="injected-customer-info">
@@ -88,7 +89,7 @@ const displayTotalAmountSpent = (id, roomsRepo, bookingsRepo) => {
 };
 
 const displaySelectedRoom = (id) => {
-  injectSearch(modalContent, (roomsRepo.findRoomObject(id)[0]))
+  injectNoEvents(modalContent, (roomsRepo.findRoomObject(id)[0]))
 }
 
 
@@ -124,6 +125,18 @@ const injectSearch = (element, obj) => {
   </section>`
 }
 
+const injectNoEvents = (element, obj) => {
+  element.innerHTML += `
+  <section class="injected-room-date" id="${obj.number}">
+    <p class="bed-size">bed size: ${obj.bedSize}</p>
+    <p class="bidet">bidet: ${obj.bidet}</p>
+    <p class="cost-per-night">cost per night: $${obj.costPerNight}</p>
+    <p class="num-beds">number of beds: ${obj.numBeds}</p>
+    <p class="room-type">room type: ${obj.roomType}</p>
+    <button class="book-room" id="${obj.number}">BOOK ROOM</button>
+  </section>`
+}
+
 
 
 // ---------------- DYNAMIC FUNCTIONS ---------------- //
@@ -150,29 +163,25 @@ const hideElement = (element) => {
 
 // ---------------- FORMS ---------------- //
 
-// form.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   errorMessage.innerText = '';
-//   const formData = new FormData(e.target);
-//   const ingredientId = findIngredient(formData.get('ingredientId'));
-//   const newIngredient = {
-//     userID: parseInt(user.userData.id),
-//     ingredientID: parseInt(ingredientId),
-//     ingredientModification: parseInt(formData.get('ingredientModification'))
-//   };
-//   if (ingredientId) {
-//     addIngredients(newIngredient);
-//     refreshPantry(newIngredient.userID);
-//   } else if (!ingredientId) {
-//     errorMessage.innerText = "Sorry, that ingredient does not exist!"
-//   };
-//   e.target.reset();
-// });
+const findPostInformaton = (targetId) => {
+  const findInfo = bookingsRepo.findBookingObject(customer.id).map(obj => {
+    if (obj.roomNumber === targetId) {
+      sendApiData(obj.date, obj.roomNumber)
+    }
+  })
+};
+
+const sendApiData = (date, roomNumber) => {
+    const newBooking = {
+      userID: parseInt(customer.id),
+      date: (date),
+      roomNumber: parseInt(roomNumber)
+    };
+  addBooking(newBooking)
+};
 
 calendarForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  // const formData = new FormData(e.target);
-  // returnDate = formData.get('checkInCalendar')
   clearPage()
   findAvailableRooms(new FormData(e.target).get('checkInCalendar'))
 })
@@ -190,12 +199,17 @@ window.addEventListener('load', fetchApiData);
 // window.addEventListener('click', fetchApiData);
 
 injectDateSearch.addEventListener('click', (e) => {
-  let targetId = Number(e.target.parentElement.getAttribute('id'))
-  console.log("TARGET", typeof targetId)
-  displaySelectedRoom(targetId)
+  // let targetId = Number(e.target.parentElement.getAttribute('id'))
+  displaySelectedRoom(Number(e.target.parentElement.getAttribute('id')))
   modal.style.display = 'block';
 });
 
 close.addEventListener('click', (e) => {
   modal.style.display = 'none';
+  clearHtml(modalContent)
+});
+
+modalContent.addEventListener('click', (e) => {
+  e.preventDefault();
+  findPostInformaton(Number(e.target.getAttribute('id')))
 });
