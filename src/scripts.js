@@ -62,12 +62,12 @@ const displayCustomerInfomation = (id, bookingRepo, roomsRepo) => {
     roomsRepo.findRoomObject(booking.roomNumber).map(room => {
       injectBookings.innerHTML +=
       `<li class="bed-size">bed size: ${room.bedSize}</li>
-      <li class="bed-size">bidet: ${room.bidet}</li>
-      <li class="bed-size">cost per night: $${room.costPerNight}</li>
-      <li class="bed-size">number of beds: ${room.numBeds}</li>
-      <li class="bed-size">room type: ${room.roomType}</li>
-      <li class="bed-size">booking date: ${booking.date}</li>
-      <li class="bed-size">room number: ${booking.roomNumber}</li>`
+      <li class="bidet">bidet: ${room.bidet}</li>
+      <li class="cost-per-night">cost per night: $${room.costPerNight}</li>
+      <li class="num-beds">number of beds: ${room.numBeds}</li>
+      <li class="room-type">room type: ${room.roomType}</li>
+      <li class="booking-date">booking date: ${booking.date}</li>
+      <li class="room-number">room number: ${booking.roomNumber}</li>`
     })
   })
 };
@@ -76,20 +76,21 @@ const displayTotalAmountSpent = (id, roomsRepo, bookingsRepo) => {
   injectTotalSpent.innerHTML += `<li class="amount-spent">Amount Spent: $${customerRepo.totalAmountSpent(id, roomsRepo, bookingsRepo)}`
 };
 
-// I should be able to select a date for which I’d like to book a room for myself
-// Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date
 
 const findAvailableRooms = (date) => {
   const filterRoomByDate = roomsRepo.roomsData.forEach(room => {
     if (bookingsRepo.findDate(date).includes(room.number)) {
-      console.log(room)
+      roomsRepo.findRoomObject(room.number).forEach(obj => {
+        injectDateSearch.innerHTML += `
+        <li class="bed-size">bed size: ${obj.bedSize}</li>
+        <li class="bidet">bidet: ${obj.bidet}</li>
+        <li class="cost-per-night">cost per night: $${obj.costPerNight}</li>
+        <li class="num-beds">number of beds: ${obj.numBeds}</li>
+        <li class="room-type">room type: ${obj.roomType}</li>`
+      })
     }
   })
-  // bookingsRepo.findDate(date))
-}
-
-// on this date, a booking.roomNumber is availiable.
-// check booking room number to rooms and return rooms
+};
 
 // ---------------- FORMS ---------------- //
 
@@ -97,6 +98,8 @@ calendarForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   returnDate = formData.get('checkInCalendar')
+  injectBookings.innerHTML = '';
+  injectTotalSpent.innerHTML ='';
   findAvailableRooms(returnDate)
 })
 
