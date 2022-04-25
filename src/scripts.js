@@ -12,13 +12,15 @@ require("flatpickr/dist/themes/dark.css");
 flatpickr("input[type=date]", {
   altInput: true,
   altFormat: "F j, Y",
-  dateFormat: "Y-m-d",
+  dateFormat: "Y/m/d",
 })
 
 // ---------------- QUERY SELECTORS ---------------- //
 
 let injectBookings = document.querySelector('.display-bookings');
 let injectTotalSpent = document.querySelector('.display-customer-amount-spent');
+let calendarForm = document.querySelector('#calendarForm');
+let injectDateSearch = document.querySelector('.display-date-search')
 
 // ---------------- GLOBAL VARIABLES ---------------- //
 
@@ -26,6 +28,7 @@ let customerRepo;
 let roomsRepo;
 let bookingsRepo;
 let customer;
+let returnDate;
 
 // ---------------- FUNCTIONS ---------------- //
 
@@ -72,6 +75,34 @@ const displayCustomerInfomation = (id, bookingRepo, roomsRepo) => {
 const displayTotalAmountSpent = (id, roomsRepo, bookingsRepo) => {
   injectTotalSpent.innerHTML += `<li class="amount-spent">Amount Spent: $${customerRepo.totalAmountSpent(id, roomsRepo, bookingsRepo)}`
 };
+
+// I should be able to select a date for which I’d like to book a room for myself
+// Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date
+
+const findAvailableRooms = (date) => {
+  const filterRoomByDate = roomsRepo.roomsData.forEach(room => {
+    if (bookingsRepo.findDate(date).includes(room.number)) {
+      console.log(room)
+    }
+  })
+  // bookingsRepo.findDate(date))
+}
+
+// on this date, a booking.roomNumber is availiable.
+// check booking room number to rooms and return rooms
+
+// ---------------- FORMS ---------------- //
+
+calendarForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  returnDate = formData.get('checkInCalendar')
+  findAvailableRooms(returnDate)
+})
+
+// const formData = new FormData(e.target);
+//   searchDate = formData.get('dateToBook').split("-").join("/")
+// data comes back with 0
 
 
 // ---------------- FUNCTIONS ---------------- //
