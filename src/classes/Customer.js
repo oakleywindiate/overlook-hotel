@@ -20,7 +20,7 @@ class Customer {
   }
 
   totalAmountSpent(id, roomData, bookingData) {
-    const findNumber = bookingData.findUserObject(id).map(obj => obj.roomNumber).reduce((acc, number) => {
+    const findNumber = bookingData.findBookingObject(id).map(obj => obj.roomNumber).reduce((acc, number) => {
       if (number === roomData.findNumber(number)) {
         acc += (roomData.findRoomCostPerNight(number))
       }

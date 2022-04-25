@@ -7,7 +7,7 @@ class Bookings {
   return Number(this.bookingsData.filter(booking => booking.userID === id).map(obj => obj.userID))
   }
 
-  findUserObject(id) {
+  findBookingObject(id) {
     return this.bookingsData.filter(booking => booking.userID === id)
   }
 
@@ -17,6 +17,10 @@ class Bookings {
 
   findDate(date) {
     return this.bookingsData.filter(booking => booking.date === date).map(obj => obj.roomNumber)
+  }
+
+  findDateById(id) {
+    return this.bookingsData.filter(booking => booking.userID === id).map(obj => obj.date)
   }
 };
 
