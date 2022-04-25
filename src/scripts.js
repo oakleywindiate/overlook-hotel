@@ -101,9 +101,19 @@ const searchRoomTypes = () => {
   })
 };
 
+// ---------------- DYNAMIC FUNCTIONS ---------------- //
+
 const clearHtml = (value) => {
   value.innerHTML = '';
 }
+
+const showElement = (element) => {
+  element.classList.remove('hidden');
+};
+
+const hideElement = (element) => {
+  element.classList.add('hidden');
+};
 
 //push rooms into a new array
 //make global variable
@@ -119,6 +129,8 @@ calendarForm.addEventListener('submit', (e) => {
   clearHtml(injectDateSearch)
   findAvailableRooms(returnDate)
 })
+
+// input.addEventListener('change', updateValue);
 
 // const formData = new FormData(e.target);
 //   searchDate = formData.get('dateToBook').split("-").join("/")
