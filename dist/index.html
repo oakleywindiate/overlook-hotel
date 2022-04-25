@@ -10,8 +10,15 @@
 <body>
   <nav>
     <form id="calendarForm" name="calendarForm">
-      <input class="calendar-form" id="checkInCalendar" name="checkInCalendar" type="date" placeholder="search available rooms" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d">
-        <button type="submit" class="check-in-button">Search</button>
+      <input class="calendar-form" id="checkInCalendar" name="checkInCalendar" type="date" placeholder="search available rooms" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d" required>
+      <select class="room-type-selector" id="roomType" name="roomType" placeholder="search by room type">
+        <option>all rooms</option>
+        <option>junior suite</option>
+        <option>suite</option>
+        <option>residential suite</option>
+        <option>single room</option>
+      </select>
+      <button type="submit" class="check-in-button">Search</button>
       </div>
     </form>
   </nav>
