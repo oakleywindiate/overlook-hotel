@@ -20,7 +20,10 @@ flatpickr("input[type=date]", {
 let injectBookings = document.querySelector('.display-bookings');
 let injectTotalSpent = document.querySelector('.display-customer-amount-spent');
 let calendarForm = document.querySelector('#calendarForm');
-let injectDateSearch = document.querySelector('.display-date-search')
+let injectDateSearch = document.querySelector('.display-date-search');
+let searchRooms = document.querySelector('.room-type-selector');
+let searchRoomValue = document.querySelector('#roomType');
+let searchRoomType = document.querySelector('.display-room-type-search');
 
 // ---------------- GLOBAL VARIABLES ---------------- //
 
@@ -83,7 +86,6 @@ const findAvailableRooms = (date) => {
     if (!bookingsRepo.findDate(date).includes(room.number)) {
       roomsRepo.findRoomObject(room.number).forEach(obj => {
         availableRooms.push(obj)
-        searchRoomTypes()
         injectDateSearch.innerHTML += `
         <li class="bed-size">bed size: ${obj.bedSize}</li>
         <li class="bidet">bidet: ${obj.bidet}</li>
@@ -96,12 +98,26 @@ const findAvailableRooms = (date) => {
 };
 
 const searchRoomTypes = () => {
-  availableRooms.forEach(room => {
-    console.log("room", room.roomType)
+  return availableRooms.filter(room => {
+    if (searchRoomValue.value === room.roomType) {
+      searchRoomType.innerHTML += `
+      <li class="bed-size">bed size: ${room.bedSize}</li>
+      <li class="bidet">bidet: ${room.bidet}</li>
+      <li class="cost-per-night">cost per night: $${room.costPerNight}</li>
+      <li class="num-beds">number of beds: ${room.numBeds}</li>
+      <li class="room-type">room type: ${room.roomType}</li>`
+    }
   })
 };
 
 // ---------------- DYNAMIC FUNCTIONS ---------------- //
+
+const clearPage = () => {
+  clearHtml(injectBookings)
+  clearHtml(injectTotalSpent)
+  clearHtml(injectDateSearch)
+  clearHtml(searchRoomType)
+}
 
 const clearHtml = (value) => {
   value.innerHTML = '';
@@ -124,13 +140,14 @@ calendarForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   returnDate = formData.get('checkInCalendar')
-  clearHtml(injectBookings)
-  clearHtml(injectTotalSpent)
-  clearHtml(injectDateSearch)
+  clearPage()
   findAvailableRooms(returnDate)
 })
 
-// input.addEventListener('change', updateValue);
+searchRooms.addEventListener('change', (e) => {
+  clearPage()
+  searchRoomTypes()
+});
 
 // const formData = new FormData(e.target);
 //   searchDate = formData.get('dateToBook').split("-").join("/")
