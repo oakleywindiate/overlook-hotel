@@ -29,6 +29,7 @@ let roomsRepo;
 let bookingsRepo;
 let customer;
 let returnDate;
+let availableRooms = [];
 
 // ---------------- FUNCTIONS ---------------- //
 
@@ -78,9 +79,11 @@ const displayTotalAmountSpent = (id, roomsRepo, bookingsRepo) => {
 
 
 const findAvailableRooms = (date) => {
-  const filterRoomByDate = roomsRepo.roomsData.forEach(room => {
-    if (bookingsRepo.findDate(date).includes(room.number)) {
+  return roomsRepo.roomsData.forEach(room => {
+    if (!bookingsRepo.findDate(date).includes(room.number)) {
       roomsRepo.findRoomObject(room.number).forEach(obj => {
+        availableRooms.push(obj)
+        searchRoomTypes()
         injectDateSearch.innerHTML += `
         <li class="bed-size">bed size: ${obj.bedSize}</li>
         <li class="bidet">bidet: ${obj.bidet}</li>
@@ -92,14 +95,28 @@ const findAvailableRooms = (date) => {
   })
 };
 
+const searchRoomTypes = () => {
+  availableRooms.forEach(room => {
+    console.log("room", room.roomType)
+  })
+};
+
+const clearHtml = (value) => {
+  value.innerHTML = '';
+}
+
+//push rooms into a new array
+//make global variable
+
 // ---------------- FORMS ---------------- //
 
 calendarForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   returnDate = formData.get('checkInCalendar')
-  injectBookings.innerHTML = '';
-  injectTotalSpent.innerHTML ='';
+  clearHtml(injectBookings)
+  clearHtml(injectTotalSpent)
+  clearHtml(injectDateSearch)
   findAvailableRooms(returnDate)
 })
 
