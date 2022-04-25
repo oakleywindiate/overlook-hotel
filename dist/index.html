@@ -9,10 +9,8 @@
 </head>
 <body>
   <nav>
-    <form>
-      <input class="calendar-form" id="check-in-calendar" type="date" placeholder="CHECK IN" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d">
-      <input class="calendar-form" id="check-out-calendar" type="date" placeholder="CHECK OUT" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d">
-      <div>
+    <form id="calendarForm" name="calendarForm">
+      <input class="calendar-form" id="checkInCalendar" name="checkInCalendar" type="date" placeholder="search available rooms" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d">
         <button type="submit" class="check-in-button">Search</button>
       </div>
     </form>
@@ -23,6 +21,11 @@
         <!-- customer details inject here -->
       </section>
       <section class="display-customer-amount-spent">
+      </section>
+    </section>
+    <section class="display-search-by-date">
+      <section class="display-date-search">
+        <!-- customer search by date injects here -->
       </section>
     </section>
   </main>
