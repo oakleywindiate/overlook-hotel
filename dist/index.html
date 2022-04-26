@@ -4,73 +4,84 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
   <title>The Overlook Hotel</title>
 </head>
 <body>
-  <section class="log-in-wrapper">
-    <form id="login-form">
-     <input aria-label="Enter your username" type="text" name="username" id="username-field" class="login-form-field" placeholder="Username" required>
-     <input aria-label="Enter your password" type="password" name="password" id="password-field" class="login-form-field" placeholder="Password" required>
-     <input aria-label="Submit your username and password" type="submit" value="Login" id="login-form-submit">
-   </form>
+  <section class=error-section>
+    <p class="login-error-tag"></p>
+    <p class="api-error"></p>
   </section>
-  <nav>
-    <form id="calendarForm" name="calendarForm">
-      <input aria-label="Submit the date you would like to book your room" class="calendar-form" id="checkInCalendar" name="checkInCalendar" type="date" placeholder="search available rooms" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d" required>
-      <select class="room-type-selector" id="roomType" name="roomType" placeholder="search by room type">
-        <option>all rooms</option>
-        <option>junior suite</option>
-        <option>suite</option>
-        <option>residential suite</option>
-        <option>single room</option>
-      </select>
-      <button type="submit" class="check-in-button">Search</button>
+  <section class="login-wrapper">
+    <form id="login-form">
+      <div class="input-wrapper">
+        <i class="fa-solid fa-otter"></i>
+        <input aria-label="Enter your username" type="text" name="username" id="username" class="login-form-field" placeholder="Username" required>
+        <input aria-label="Enter your password" type="password" name="password" id="password" class="login-form-field" placeholder="Password" required>
+        <input aria-label="Submit your username and password" type="submit" value="Login" id="login-form-submit">
       </div>
     </form>
-  </nav>
-  <main>
-    <section class="chart">
-       <canvas class='round-chart' width="400" height="400" id="myChart"></canvas>
-    </section>
-    <section class="display-customer-bookings">
-      <section class="display-bookings">
-        <!-- customer details inject here -->
+  </section>
+  <section class="main-page-wrapper hidden">
+    <nav>
+      <form id="calendarForm" name="calendarForm">
+        <input aria-label="Submit the date you would like to book your room" class="calendar-form" id="checkInCalendar" name="checkInCalendar" type="date" placeholder="search available rooms" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d" required>
+        <select class="room-type-selector" id="roomType" name="roomType" placeholder="search by room type">
+          <option>all rooms</option>
+          <option>junior suite</option>
+          <option>suite</option>
+          <option>residential suite</option>
+          <option>single room</option>
+        </select>
+        <button type="submit" class="check-in-button">Search</button>
+      </form>
+    </nav>
+    <main>
+      <section class="chart">
+         <canvas class='round-chart' width="400" height="400" id="myChart"></canvas>
       </section>
-      <section class="display-customer-amount-spent">
+      <section class="display-customer-bookings">
+        <section class="display-bookings">
+          <!-- customer details inject here -->
+        </section>
+        <section class="display-customer-amount-spent">
+        </section>
       </section>
-    </section>
-    <section class="display-search-by-date">
-      <section class="display-date-search">
-        <!-- customer search by date injects here -->
+      <section class="display-search-by-date">
+        <section class="display-date-search">
+          <!-- customer search by date injects here -->
+        </section>
       </section>
-    </section>
-    <!-- Modal content -->
-    <section class="modal">
-      <!-- <button class="book-room">BOOK ROOM</button> -->
-      <span class="close">&times;</span>
-        <section class="modal-content">
-          <section class="display-room-object">
-              <!-- recipe details inject here -->
+      <!-- Modal content -->
+      <section class="modal">
+        <!-- <button class="book-room">BOOK ROOM</button> -->
+        <span class="close">&times;</span>
+          <section class="modal-content">
+            <section class="display-room-object">
+                <!-- recipe details inject here -->
+            </section>
           </section>
       </section>
-    </section>
-    <section class="success-modal">
-      <!-- <button class="book-room">BOOK ROOM</button> -->
-      <span class="success-close">&times;</span>
-        <section class="success-modal-content">
-          <section class="display-room-object">
-              <!-- recipe details inject here -->
+      <section class="success-modal">
+        <!-- <button class="book-room">BOOK ROOM</button> -->
+        <span class="success-close">&times;</span>
+          <section class="success-modal-content">
+            <section class="display-room-object">
+                <!-- recipe details inject here -->
+            </section>
           </section>
       </section>
-    </section>
-    <section class="display-search-by-room-type">
-      <section class="display-room-type-search">
-        <!-- customer search by room type injects here -->
+      <section class="display-search-by-room-type">
+        <section class="display-room-type-search">
+          <!-- customer search by room type injects here -->
+        </section>
       </section>
-    </section>
-  </main>
-  <script src="bundle.js"></script>
-  <script type="text/javascript" src="./src/charts.js"></script>
+    </main>
+    <script src="bundle.js"></script>
+    <script type="text/javascript" src="./src/charts.js"></script>
+    <script src="https://kit.fontawesome.com/b17671a259.js" crossorigin="anonymous"></script>
+  </section>
 </body>
 </html>
