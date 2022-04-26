@@ -45,6 +45,8 @@ let customerPassword = document.getElementById('password');
 let submitLogin = document.getElementById('login-form-submit');
 let loginError = document.getElementById('login-error-tag');
 let apiError = document.getElementById('api-error');
+let loginWrapper = document.querySelector('.login-wrapper');
+let mainPageWrapper = document.querySelector('.main-page-wrapper');
 
 // ---------------- GLOBAL VARIABLES ---------------- //
 
@@ -194,20 +196,19 @@ const runNoResultsModal = () => {
 };
 
 const checkLogin = (username, password) => {
-  customer = customerRepo.findCustomerObject(Number(username.replace(/\D/g, "")))[0]
-  runDisplay(customer)
+  if (password = 'overlook2021') {
+    customer = customerRepo.findCustomerObject(Number(username.replace(/\D/g, "")))[0]
+    runDisplay(customer)
+    hideElement(loginWrapper)
+    showElement(mainPageWrapper)
+  }
 };
 
 const runDisplay = (customer) => {
   console.log(customer)
   displayCustomerInfomation(customer.id, bookingsRepo, roomsRepo)
   displayTotalAmountSpent(customer.id, roomsRepo, bookingsRepo)
-}
-
-// const retrieveRandomCustomer = (value) => {
-//   const customer = value[Math.floor(Math.random() * value.length)];
-//   return customer;
-// };
+};
 
 
 // ---------------- DYNAMIC FUNCTIONS ---------------- //

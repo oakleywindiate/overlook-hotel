@@ -39,10 +39,6 @@ button,
   cursor: pointer;
 }
 
-.hidden {
-  display: none;
-}
-
 .fa-otter {
   color: #01B97E;
   font-size: 5em;
@@ -165,4 +161,8 @@ input[type="password"], textarea,
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
