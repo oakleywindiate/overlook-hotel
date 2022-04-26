@@ -88,13 +88,15 @@ const displayCustomerInfomation = (id, bookingRepo, roomsRepo) => {
     roomsRepo.findRoomObject(booking.roomNumber).map(room => {
       injectBookings.innerHTML += `
       <section class="injected-customer-info">
-        <li class="bed-size">bed size: ${room.bedSize}</li>
-        <li class="bidet">bidet: ${room.bidet}</li>
-        <li class="cost-per-night">cost per night: $${room.costPerNight}</li>
-        <li class="num-beds">number of beds: ${room.numBeds}</li>
-        <li class="room-type">room type: ${room.roomType}</li>
-        <li class="booking-date">booking date: ${booking.date}</li>
-        <li class="room-number">room number: ${booking.roomNumber}</li>
+        <ul>
+          <li class="bed-size">bed size: ${room.bedSize}</li>
+          <li class="bidet">bidet: ${room.bidet}</li>
+          <li class="cost-per-night">cost per night: $${room.costPerNight}</li>
+          <li class="num-beds">number of beds: ${room.numBeds}</li>
+          <li class="room-type">room type: ${room.roomType}</li>
+          <li class="booking-date">booking date: ${booking.date}</li>
+          <li class="room-number">room number: ${booking.roomNumber}</li>
+        </ul>
       </section>`
     })
   })
@@ -103,7 +105,7 @@ const displayCustomerInfomation = (id, bookingRepo, roomsRepo) => {
 const displayTotalAmountSpent = (id, roomsRepo, bookingsRepo) => {
   // const total = 9000
   const amount = injectTotalSpent.innerHTML += `
-  <li class="amount-spent">Amount Spent: $${customerRepo.totalAmountSpent(id, roomsRepo, bookingsRepo)}</li>`
+  <p class="amount-spent">Amount Spent: $${customerRepo.totalAmountSpent(id, roomsRepo, bookingsRepo)}</p>`
   amountSpent(ctx, customerRepo.totalAmountSpent(id, roomsRepo, bookingsRepo), 3000)
 };
 
@@ -146,11 +148,13 @@ const searchRoomTypes = () => {
 const injectSearch = (element, obj) => {
   element.innerHTML += `
   <section class="injected-room-date" id="${obj.number}">
-    <li class="bed-size">bed size: ${obj.bedSize}</li>
-    <li class="bidet">bidet: ${obj.bidet}</li>
-    <li class="cost-per-night">cost per night: $${obj.costPerNight}</li>
-    <li class="num-beds">number of beds: ${obj.numBeds}</li>
-    <li class="room-type">room type: ${obj.roomType}</li>
+    <ul>
+      <li class="bed-size">bed size: ${obj.bedSize}</li>
+      <li class="bidet">bidet: ${obj.bidet}</li>
+      <li class="cost-per-night">cost per night: $${obj.costPerNight}</li>
+      <li class="num-beds">number of beds: ${obj.numBeds}</li>
+      <li class="room-type">room type: ${obj.roomType}</li>
+    </ul>
   </section>`
 }
 
@@ -162,7 +166,7 @@ const injectNoEvents = (element, obj) => {
     <p class="cost-per-night">cost per night: $${obj.costPerNight}</p>
     <p class="num-beds">number of beds: ${obj.numBeds}</p>
     <p class="room-type">room type: ${obj.roomType}</p>
-    <button class="book-room" id="${obj.number}">BOOK ROOM</button>
+    <button aria-label="Book your selected room" class="book-room" id="${obj.number}">BOOK ROOM</button>
   </section>`
 }
 
