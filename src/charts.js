@@ -2,7 +2,7 @@ import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 const amountSpent = (ctx, value, total) =>    {
-  const myChart = new Chart(ctx, {
+  let myChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
           labels: [`Amount Spent`],
@@ -16,6 +16,8 @@ const amountSpent = (ctx, value, total) =>    {
           }]
       },
       options: {
+          maintainAspectRatio: false,
+          responsive: true,
           cutout: 70,
           borderWidth: 1,
           borderColor: '#000000',
@@ -23,6 +25,9 @@ const amountSpent = (ctx, value, total) =>    {
           plugins: {
             legend: {
               display: false
+            },
+            tooltip: {
+              enabled: false,
             },
             title: {
               display: false,
@@ -36,6 +41,7 @@ const amountSpent = (ctx, value, total) =>    {
       }
   });
 }
+
 
 export default Chart;
 export {amountSpent}
