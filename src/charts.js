@@ -10,8 +10,8 @@ const amountSpent = (ctx, value, total) =>    {
               label: 'Amount',
               data: [value, total],
               backgroundColor: [
-                  '#1e7898',
-                  '#FFF',
+                  '#007A5C',
+                  '#035D63',
               ],
           }]
       },
