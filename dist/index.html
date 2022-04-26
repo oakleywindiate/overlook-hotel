@@ -17,7 +17,7 @@
   <section class="login-wrapper">
     <form id="login-form">
       <div class="input-wrapper">
-        <i class="fa-solid fa-otter"></i>
+        <i class="fa-solid fa-otter" id="otterOne"></i>
         <input aria-label="Enter your username" type="text" name="username" id="username" class="login-form-field" placeholder="Username" required>
         <input aria-label="Enter your password" type="password" name="password" id="password" class="login-form-field" placeholder="Password" required>
         <input aria-label="Submit your username and password" type="submit" value="Login" id="login-form-submit">
@@ -26,8 +26,9 @@
   </section>
   <section class="main-page-wrapper hidden">
     <nav>
+      <i class="fa-solid fa-otter" id="otterTwo"></i>
       <form id="calendarForm" name="calendarForm">
-        <input aria-label="Submit the date you would like to book your room" class="calendar-form" id="checkInCalendar" name="checkInCalendar" type="date" placeholder="search available rooms" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d" required>
+        <input aria-label="Submit the date you would like to book your room" class="calendar-form" id="checkInCalendar" name="checkInCalendar" type="date" placeholder="search available dates" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d" required>
         <select class="room-type-selector" id="roomType" name="roomType" placeholder="search by room type">
           <option>all rooms</option>
           <option>junior suite</option>
@@ -35,7 +36,7 @@
           <option>residential suite</option>
           <option>single room</option>
         </select>
-        <button type="submit" class="check-in-button">Search</button>
+        <button type="submit" class="check-in-button" id="searchButton">Search</button>
       </form>
     </nav>
     <main>

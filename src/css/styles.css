@@ -28,10 +28,23 @@ textarea {
 
 body {
   background: #33333D;
+  margin: 0px;
+  margin-top: -1em;
 }
 
 p {
   pointer-events: none;
+}
+
+nav {
+  background-color: ##33333d;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 button,
@@ -39,7 +52,7 @@ button,
   cursor: pointer;
 }
 
-.fa-otter {
+#otterOne {
   color: #01B97E;
   font-size: 5em;
 }
@@ -53,12 +66,13 @@ button,
   overflow: hidden;
 }
 
+.main-page-wrapper {
+  height: 100vh;
+}
+
 #login-form {
   text-align: center;
   border: 100em solid #33333D;
-}
-
-#login-form-submit {
 }
 
 .input-wrapper {
@@ -67,29 +81,58 @@ button,
   gap: .5em;
 }
 
-#login-form-submit {
+#login-form-submit,
+#searchButton {
   margin-top: 2em;
 }
 
-#login-form-submit:hover {
+#login-form-submit:hover,
+#searchButton:hover{
   color: #01B97E;
   transform: scale(1, 1);
   content: '';
   z-index: 1;
   transition: all 0.2s;
-  background-color: #33333D;
   border-top: 1px solid #01B97E;
   border-bottom: 1px solid #01B97E;
 }
 
-#login-form-submit:hover::after {
+#login-form-submit:hover {
+  background-color: #33333D;
+}
+
+#searchButton:hover{
+  background-color: #000000;
+}
+
+#login-form-submit:hover::after,
+#searchButton:hover::after {
   opacity: 0;
   transform: scale(0.1, 1);
 }
 
 input[type="text"], textarea,
 input[type="password"], textarea,
-#login-form-submit {
+#login-form-submit,
+#searchButton {
+  font-family: 'Roboto Condensed', sans-serif;
+  background-color : #000000;
+  color: #FFFFFF;
+  border: none;
+  width: 20em;
+  height: 2.2em;
+}
+
+#otterTwo {
+  color: #01B97E;
+  font-size: 4em;
+}
+
+#searchButton {
+  width: 20tem;
+}
+
+select {
   font-family: 'Roboto Condensed', sans-serif;
   background-color : #000000;
   color: #FFFFFF;
@@ -130,9 +173,7 @@ input[type="password"], textarea,
   background-color: #FFFBE6;
   margin: auto;
   padding: 20px;
-  /* border: 1px solid #888; */
   width: 80%;
-  /* font-family: 'Montserrat', sans-serif; */
   color: #356859;
 }
 

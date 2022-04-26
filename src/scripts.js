@@ -196,12 +196,12 @@ const runNoResultsModal = () => {
 };
 
 const checkLogin = (username, password) => {
-  if (password = 'overlook2021') {
+  // if (password === 'overlook2021') {
     customer = customerRepo.findCustomerObject(Number(username.replace(/\D/g, "")))[0]
     runDisplay(customer)
     hideElement(loginWrapper)
     showElement(mainPageWrapper)
-  }
+  // }
 };
 
 const runDisplay = (customer) => {
