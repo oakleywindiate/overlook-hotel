@@ -39,6 +39,12 @@ let bookRoom = document.querySelector('.book-room');
 let successModal = document.querySelector('.success-modal');
 let successClose = document.querySelector('.success-close');
 let successModalContent = document.querySelector('.success-modal-content');
+let loginForm = document.querySelector('.login-form');
+let customerUsername = document.getElementById('username');
+let customerPassword = document.getElementById('password');
+let submitLogin = document.getElementById('login-form-submit');
+let loginError = document.getElementById('login-error-tag');
+let apiError = document.getElementById('api-error');
 
 // ---------------- GLOBAL VARIABLES ---------------- //
 
@@ -49,61 +55,64 @@ let customer;
 let returnDate;
 let availableRooms = [];
 let date;
+let data;
 
 // ---------------- FUNCTIONS ---------------- //
-
-const retrieveRandomCustomer = (value) => {
-  const customer = value[Math.floor(Math.random() * value.length)];
-  return customer;
-};
 
 const fetchApiData = () => {
   Promise.all([
     fetchData('customers'),
     fetchData('rooms'),
-    fetchData('bookings')
+    fetchData('bookings'),
   ]).then(data => {
     createInstances(data)
+  });
+};
+
+const updateCustomerApi = () => {
+  Promise.all([
+    fetchData('customers'),
+    fetchData('rooms'),
+    fetchData('bookings'),
+    fetchData(`customers/${customer.id}`),
+  ]).then(data => {
+    updateDataInstances(data)
+    clearHtml(injectBookings)
     displayCustomerInfomation(customer.id, bookingsRepo, roomsRepo)
     displayTotalAmountSpent(customer.id, roomsRepo, bookingsRepo)
   });
 };
 
-const updateApi = () => {
-  fetchData(`customers/${customer.id}`)
-  fetchData('bookings')
-  clearPage()
-}
-
 const createInstances = (data) => {
   customerRepo = new Customer(data[0].customers);
   roomsRepo = new Rooms(data[1].rooms);
   bookingsRepo = new Bookings(data[2].bookings);
-  customer = retrieveRandomCustomer(customerRepo.customerData);
-  console.log(customer)
 };
+
+const updateDataInstances = (data) => {
+  customerRepo = new Customer(data[0].customers);
+  roomsRepo = new Rooms(data[1].rooms);
+  bookingsRepo = new Bookings(data[2].bookings);
+}
 
 const displayCustomerInfomation = (id, bookingRepo, roomsRepo) => {
   return bookingRepo.findBookingObject(id).forEach(booking => {
     roomsRepo.findRoomObject(booking.roomNumber).map(room => {
       injectBookings.innerHTML += `
       <section class="injected-customer-info">
-        <ul>
-          <li class="bed-size">bed size: ${room.bedSize}</li>
-          <li class="bidet">bidet: ${room.bidet}</li>
-          <li class="cost-per-night">cost per night: $${room.costPerNight}</li>
-          <li class="num-beds">number of beds: ${room.numBeds}</li>
-          <li class="room-type">room type: ${room.roomType}</li>
-          <li class="booking-date">booking date: ${booking.date}</li>
-          <li class="room-number">room number: ${booking.roomNumber}</li>
-        </ul>
+        <li class="bed-size">bed size: ${room.bedSize}</li>
+        <li class="bidet">bidet: ${room.bidet}</li>
+        <li class="cost-per-night">cost per night: $${room.costPerNight}</li>
+        <li class="num-beds">number of beds: ${room.numBeds}</li>
+        <li class="room-type">room type: ${room.roomType}</li>
+        <li class="booking-date">booking date: ${booking.date}</li>
+        <li class="room-number">room number: ${booking.roomNumber}</li>
       </section>`
     })
   })
 };
 
 const displayTotalAmountSpent = (id, roomsRepo, bookingsRepo) => {
-  // const total = 9000
   const amount = injectTotalSpent.innerHTML += `
   <p class="amount-spent">Amount Spent: $${customerRepo.totalAmountSpent(id, roomsRepo, bookingsRepo)}</p>`
   amountSpent(ctx, customerRepo.totalAmountSpent(id, roomsRepo, bookingsRepo), 3000)
@@ -139,8 +148,8 @@ const searchRoomTypes = () => {
         injectSearch(searchRoomType, room)
     } else if (searchRoomValue.value === 'all rooms') {
         injectSearch(injectDateSearch, room)
-      } else {
-        runNoResultsModal()
+      // } else if
+      //   runNoResultsModal()
       }
     })
   };
@@ -148,13 +157,11 @@ const searchRoomTypes = () => {
 const injectSearch = (element, obj) => {
   element.innerHTML += `
   <section class="injected-room-date" id="${obj.number}">
-    <ul>
-      <li class="bed-size">bed size: ${obj.bedSize}</li>
-      <li class="bidet">bidet: ${obj.bidet}</li>
-      <li class="cost-per-night">cost per night: $${obj.costPerNight}</li>
-      <li class="num-beds">number of beds: ${obj.numBeds}</li>
-      <li class="room-type">room type: ${obj.roomType}</li>
-    </ul>
+    <li class="bed-size">bed size: ${obj.bedSize}</li>
+    <li class="bidet">bidet: ${obj.bidet}</li>
+    <li class="cost-per-night">cost per night: $${obj.costPerNight}</li>
+    <li class="num-beds">number of beds: ${obj.numBeds}</li>
+    <li class="room-type">room type: ${obj.roomType}</li>
   </section>`
 }
 
@@ -184,7 +191,23 @@ const runNoResultsModal = () => {
   modal.style.display = 'block';
   modalContent.innerHTML += `
   <p>Oh no! Looks like there are no available rooms for this date. Please try again!</p>`
+};
+
+const checkLogin = (username, password) => {
+  customer = customerRepo.findCustomerObject(Number(username.replace(/\D/g, "")))[0]
+  runDisplay(customer)
+};
+
+const runDisplay = (customer) => {
+  console.log(customer)
+  displayCustomerInfomation(customer.id, bookingsRepo, roomsRepo)
+  displayTotalAmountSpent(customer.id, roomsRepo, bookingsRepo)
 }
+
+// const retrieveRandomCustomer = (value) => {
+//   const customer = value[Math.floor(Math.random() * value.length)];
+//   return customer;
+// };
 
 
 // ---------------- DYNAMIC FUNCTIONS ---------------- //
@@ -241,6 +264,7 @@ searchRooms.addEventListener('change', (e) => {
 });
 
 
+
 // ---------------- EVENT LISTENERS ---------------- //
 
 window.addEventListener('load', fetchApiData);
@@ -270,7 +294,11 @@ modalContent.addEventListener('click', (e) => {
 
 successClose.addEventListener('click', (e) => {
   successModal.style.display = 'none';
-  clearHtml(successModalContent)
-  updateApi()
+  clearPage()
+  updateCustomerApi()
+});
 
+submitLogin.addEventListener('click', (e) => {
+  e.preventDefault();
+  checkLogin(customerUsername.value, customerPassword.value)
 });
