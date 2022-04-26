@@ -13,7 +13,6 @@ ul, li {
   list-style: none;
 }
 
-
 img {
   max-width: 100%;
 }
@@ -37,7 +36,7 @@ p {
 }
 
 nav {
-  background-color: ##33333d;
+  background-color: #000000;
   margin: 0;
   display: flex;
   flex-direction: row;
@@ -48,7 +47,9 @@ nav {
 }
 
 button,
-#login-form-submit {
+#login-form-submit,
+input[type="text"],
+select {
   cursor: pointer;
 }
 
@@ -81,13 +82,17 @@ button,
   gap: .5em;
 }
 
-#login-form-submit,
-#searchButton {
+#login-form-submit {
   margin-top: 2em;
 }
 
-#login-form-submit:hover,
-#searchButton:hover{
+#searchButton {
+  margin-top: 3em;
+  width: 100em;
+  margin-right: 10em;
+}
+
+#login-form-submit:hover {
   color: #01B97E;
   transform: scale(1, 1);
   content: '';
@@ -95,6 +100,10 @@ button,
   transition: all 0.2s;
   border-top: 1px solid #01B97E;
   border-bottom: 1px solid #01B97E;
+}
+
+#searchButton:hover {
+  transform: scale(1.2, 1.2)
 }
 
 #login-form-submit:hover {
@@ -126,10 +135,6 @@ input[type="password"], textarea,
 #otterTwo {
   color: #01B97E;
   font-size: 4em;
-}
-
-#searchButton {
-  width: 20tem;
 }
 
 select {
