@@ -28,6 +28,10 @@ class Customer {
     }, 0)
     return +findNumber.toFixed(2)
   }
+
+  findCustomerName(id) {
+    return this.customerData.filter(customer => customer.id === id).map(obj => obj.name).toString().split(' ')
+  }
 };
 
 export default Customer;
