@@ -10,7 +10,7 @@
 <body>
   <nav>
     <form id="calendarForm" name="calendarForm">
-      <input class="calendar-form" id="checkInCalendar" name="checkInCalendar" type="date" placeholder="search available rooms" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d" required>
+      <input aria-label="Submit the date you would like to book a room" class="calendar-form" id="checkInCalendar" name="checkInCalendar" type="date" placeholder="search available rooms" altInput="true" altFormat="F j, Y" dateFormat="Y-m-d" required>
       <select class="room-type-selector" id="roomType" name="roomType" placeholder="search by room type">
         <option>all rooms</option>
         <option>junior suite</option>
@@ -23,6 +23,9 @@
     </form>
   </nav>
   <main>
+    <section class="chart">
+       <canvas class='round-chart' width="400" height="400" id="myChart"></canvas>
+    </section>
     <section class="display-customer-bookings">
       <section class="display-bookings">
         <!-- customer details inject here -->
@@ -45,14 +48,22 @@
           </section>
       </section>
     </section>
+    <section class="success-modal">
+      <!-- <button class="book-room">BOOK ROOM</button> -->
+      <span class="success-close">&times;</span>
+        <section class="success-modal-content">
+          <section class="display-room-object">
+              <!-- recipe details inject here -->
+          </section>
+      </section>
+    </section>
     <section class="display-search-by-room-type">
       <section class="display-room-type-search">
         <!-- customer search by room type injects here -->
       </section>
     </section>
   </main>
-  <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
-
   <script src="bundle.js"></script>
+  <script type="text/javascript" src="./src/charts.js"></script>
 </body>
 </html>
