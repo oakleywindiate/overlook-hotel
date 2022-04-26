@@ -1,8 +1,111 @@
-body {
-  /* background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); */
+/* *:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+} */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
+
+ul, li {
+  list-style: none;
+}
+
+
+img {
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+textarea {
+  white-space: revert;
+}
+
+body {
+  background: #33333D;
+}
+
 p {
   pointer-events: none;
+}
+
+button,
+#login-form-submit {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.fa-otter {
+  color: #01B97E;
+  font-size: 5em;
+}
+
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#login-form {
+  text-align: center;
+  border: 100em solid #33333D;
+}
+
+#login-form-submit {
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+#login-form-submit {
+  margin-top: 2em;
+}
+
+#login-form-submit:hover {
+  color: #01B97E;
+  transform: scale(1, 1);
+  content: '';
+  z-index: 1;
+  transition: all 0.2s;
+  background-color: #33333D;
+  border-top: 1px solid #01B97E;
+  border-bottom: 1px solid #01B97E;
+}
+
+#login-form-submit:hover::after {
+  opacity: 0;
+  transform: scale(0.1, 1);
+}
+
+input[type="text"], textarea,
+input[type="password"], textarea,
+#login-form-submit {
+  font-family: 'Roboto Condensed', sans-serif;
+  background-color : #000000;
+  color: #FFFFFF;
+  border: none;
+  width: 20em;
+  height: 2.2em;
+}
+
+::placeholder {
+  color: #FFFFFF;
+  padding-left: 8px;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .display-date-search,
