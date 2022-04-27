@@ -35,6 +35,14 @@ p {
   pointer-events: none;
 }
 
+h1 {
+  color: #FFFFFF;
+  margin-left: 1em;
+  font-family: 'Eczar', serif;
+  font-size: 3em;
+  margin-bottom: -.5em;
+}
+
 nav {
   background-color: #000000;
   margin: 0;
@@ -44,6 +52,7 @@ nav {
   padding-left: 1em;
   padding-top: 1em;
   padding-bottom: 1em;
+  z-index: 100;
 }
 
 button,
@@ -152,9 +161,48 @@ select {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+.chart-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chart {
+  flex-basis: 40%;
+  margin-top: -400em;
+  margin-left: 45em;
+  pointer-events: none;
+}
+
+.display-customer-bookings {
+  flex: 1 0 0 50%;
+  margin-top: -1em;
+  margin-left: 2em;
+}
+
 .display-date-search,
 .display-room-type-search {
   cursor: pointer;
+}
+
+.injected-customer-info {
+  background-color: #373740;
+  padding: 1em;
+  padding-right: 20em;
+  margin-bottom: 1em;
+  margin-left: 3em;
+  margin-top: 1em;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #FFFFFF;
+}
+
+.display-customer-amount-spent {
+  font-family: 'Eczar', serif;
+  color: #FFFFFF;
+  margin-left: 15em;
+  margin-top: -68.5em;
+  pointer-events: none;
+  position: absolute;
+  font-size: 3em;
 }
 
 .modal,
