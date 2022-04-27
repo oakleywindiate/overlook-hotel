@@ -1,4 +1,5 @@
 // ---------------- IMPORTS ---------------- //
+
 import './css/styles.css';
 import Customer from './classes/Customer';
 import Bookings from './classes/Bookings';
@@ -49,6 +50,7 @@ let loginWrapper = document.querySelector('.login-wrapper');
 let mainPageWrapper = document.querySelector('.main-page-wrapper');
 let injectLoginError = document.querySelector('.login-error-tag');
 let chart = document.querySelector('.chart');
+let homeButton = document.querySelector('.home-button');
 
 // ---------------- GLOBAL VARIABLES ---------------- //
 
@@ -81,7 +83,7 @@ const updateCustomerApi = () => {
     fetchData(`customers/${customer.id}`),
   ]).then(data => {
     updateDataInstances(data)
-    clearHtml(injectBookings)
+    clearPage()
     displayCustomerInfomation(customer.id, bookingsRepo, roomsRepo)
     displayTotalAmountSpent(customer.id, roomsRepo, bookingsRepo)
   });
@@ -149,7 +151,6 @@ const findAvailableRooms = (date) => {
     }
   })
 };
-
 
 const searchRoomTypes = () => {
   hideElement(chart)
@@ -315,3 +316,9 @@ submitLogin.addEventListener('click', (e) => {
   e.preventDefault();
   checkLogin(customerUsername.value, customerPassword.value)
 });
+
+homeButton.addEventListener('click', (e) => {
+  injectBookings.innerHTML = '';
+  injectDateSearch.innerHTML ='';
+  updateCustomerApi()
+})
