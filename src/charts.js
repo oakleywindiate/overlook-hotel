@@ -27,7 +27,7 @@ const amountSpent = (ctx, value, total) =>    {
               display: false
             },
             tooltip: {
-              enabled: false,
+              enabled: true,
             },
             title: {
               display: false,
