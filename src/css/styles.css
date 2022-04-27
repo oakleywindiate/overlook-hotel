@@ -1,7 +1,3 @@
-/* *:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
-  all: unset;
-  display: revert;
-} */
 
 *,
 *::before,
@@ -29,6 +25,7 @@ body {
   background: #33333D;
   margin: 0px;
   margin-top: -1em;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 p {
@@ -53,6 +50,12 @@ nav {
   padding-top: 1em;
   padding-bottom: 1em;
   z-index: 100;
+}
+
+button {
+  color: #FFFFFF;
+  background-color: #01B97E;
+  border: none;
 }
 
 button,
@@ -101,8 +104,12 @@ select {
   margin-right: 10em;
 }
 
+button:hover,
+#searchButton:hover,
+.calendar-form:hover,
+input[type="date"]:hover,
+select:hover,
 #login-form-submit:hover {
-  color: #01B97E;
   transform: scale(1, 1);
   content: '';
   z-index: 1;
@@ -111,11 +118,8 @@ select {
   border-bottom: 1px solid #01B97E;
 }
 
-#searchButton:hover {
-  transform: scale(1.2, 1.2)
-}
-
-#login-form-submit:hover {
+#login-form-submit:hover,
+button:hover {
   background-color: #33333D;
 }
 
@@ -124,7 +128,8 @@ select {
 }
 
 #login-form-submit:hover::after,
-#searchButton:hover::after {
+#searchButton:hover::after,
+button:hover::after {
   opacity: 0;
   transform: scale(0.1, 1);
 }
@@ -155,6 +160,11 @@ select {
   height: 2.2em;
 }
 
+.error-inject {
+  margin-left: 38em;
+  color: red;
+}
+
 ::placeholder {
   color: #FFFFFF;
   padding-left: 8px;
@@ -168,9 +178,12 @@ select {
 
 .chart {
   flex-basis: 40%;
-  margin-top: -400em;
-  margin-left: 45em;
+  margin-top: 6em;
+  margin-left: 34em;
   pointer-events: none;
+  position: absolute;
+  width: 1000px;
+  height:600px;
 }
 
 .display-customer-bookings {
@@ -184,7 +197,8 @@ select {
   cursor: pointer;
 }
 
-.injected-customer-info {
+.injected-customer-info,
+.injected-room-date {
   background-color: #373740;
   padding: 1em;
   padding-right: 20em;
@@ -198,8 +212,8 @@ select {
 .display-customer-amount-spent {
   font-family: 'Eczar', serif;
   color: #FFFFFF;
-  margin-left: 15em;
-  margin-top: -68.5em;
+  margin-left: 15.8em;
+  margin-top: -65em;
   pointer-events: none;
   position: absolute;
   font-size: 3em;
@@ -223,22 +237,22 @@ select {
 
 .modal-content,
 .success-modal-content {
-  background-color: #FFFBE6;
+  font-family: 'Roboto Condensed', sans-serif;
+  background-color: #373740;
   margin: auto;
   padding: 20px;
   width: 80%;
-  color: #356859;
+  color: #FFFFFF;
 }
 
 .display-room-object {
-  padding-top: 20em;
   pointer-events: none;
 }
 
 .close,
 .success-close,
 .room-close {
-  color: #aaaaaa;
+  color: #AAAAAA;
   float: right;
   font-size: 50px;
   font-weight: bold;

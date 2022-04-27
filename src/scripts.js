@@ -47,6 +47,8 @@ let loginError = document.getElementById('login-error-tag');
 let apiError = document.getElementById('api-error');
 let loginWrapper = document.querySelector('.login-wrapper');
 let mainPageWrapper = document.querySelector('.main-page-wrapper');
+let injectLoginError = document.querySelector('.login-error-tag');
+let chart = document.querySelector('.chart');
 
 // ---------------- GLOBAL VARIABLES ---------------- //
 
@@ -98,19 +100,24 @@ const updateDataInstances = (data) => {
 }
 
 const displayCustomerInfomation = (id, bookingRepo, roomsRepo) => {
+  injectBookings.innerHTML = '';
   return bookingRepo.findBookingObject(id).forEach(booking => {
-    roomsRepo.findRoomObject(booking.roomNumber).map(room => {
-      injectBookings.innerHTML += `
-      <section class="injected-customer-info">
-        <li class="bed-size">bed size: ${room.bedSize}</li>
-        <li class="bidet">bidet: ${room.bidet}</li>
-        <li class="cost-per-night">cost per night: $${room.costPerNight}</li>
-        <li class="num-beds">number of beds: ${room.numBeds}</li>
-        <li class="room-type">room type: ${room.roomType}</li>
-        <li class="booking-date">booking date: ${booking.date}</li>
-        <li class="room-number">room number: ${booking.roomNumber}</li>
-      </section>`
-    })
+    let customerRooms = []
+    if (!customerRooms.includes(booking.roomNumber)) {
+      customerRooms.push(booking.roomNumber)
+      roomsRepo.findRoomObject(booking.roomNumber).map(room => {
+        injectBookings.innerHTML += `
+        <section class="injected-customer-info">
+          <li class="bed-size">bed size: ${room.bedSize}</li>
+          <li class="bidet">bidet: ${room.bidet}</li>
+          <li class="cost-per-night">cost per night: $${room.costPerNight}</li>
+          <li class="num-beds">number of beds: ${room.numBeds}</li>
+          <li class="room-type">room type: ${room.roomType}</li>
+          <li class="booking-date">booking date: ${booking.date}</li>
+          <li class="room-number">room number: ${booking.roomNumber}</li>
+        </section>`
+      })
+    }
   })
 };
 
@@ -137,7 +144,7 @@ const findAvailableRooms = (date) => {
         availableRooms.push(obj)
         injectSearch(injectDateSearch, obj)
       })
-    } else if (bookingsRepo.findDate(date).length > 0 && (!bookingsRepo.findDate(date).includes(room.number))) {
+    } else if (availableRooms.length === 0) {
         runNoResultsModal()
     }
   })
@@ -145,13 +152,14 @@ const findAvailableRooms = (date) => {
 
 
 const searchRoomTypes = () => {
+  hideElement(chart)
   return availableRooms.filter(room => {
     if (searchRoomValue.value === room.roomType) {
         injectSearch(searchRoomType, room)
     } else if (searchRoomValue.value === 'all rooms') {
         injectSearch(injectDateSearch, room)
-      // } else if
-      //   runNoResultsModal()
+      } else if (availableRooms === 0) {
+        runNoResultsModal()
       }
     })
   };
@@ -196,16 +204,18 @@ const runNoResultsModal = () => {
 };
 
 const checkLogin = (username, password) => {
-  // if (password === 'overlook2021') {
+  if (password === 'overlook2021') {
     customer = customerRepo.findCustomerObject(Number(username.replace(/\D/g, "")))[0]
     runDisplay(customer)
     hideElement(loginWrapper)
     showElement(mainPageWrapper)
-  // }
+    injectLoginError.innerHTML = '';
+  } else {
+    injectLoginError.innerHTML = `<p class="error-inject">Error logging in. Please try again.</p>`
+  }
 };
 
 const runDisplay = (customer) => {
-  console.log(customer)
   displayCustomerInfomation(customer.id, bookingsRepo, roomsRepo)
   displayTotalAmountSpent(customer.id, roomsRepo, bookingsRepo)
 };
@@ -270,7 +280,6 @@ searchRooms.addEventListener('change', (e) => {
 
 window.addEventListener('load', fetchApiData);
 
-// window.addEventListener('click', fetchApiData);
 
 injectDateSearch.addEventListener('click', (e) => {
   displaySelectedRoom(Number(e.target.parentElement.getAttribute('id')))
@@ -295,8 +304,11 @@ modalContent.addEventListener('click', (e) => {
 
 successClose.addEventListener('click', (e) => {
   successModal.style.display = 'none';
+  injectBookings.innerHTML = '';
+  injectDateSearch.innerHTML = '';
   clearPage()
   updateCustomerApi()
+  displayCustomerInfomation()
 });
 
 submitLogin.addEventListener('click', (e) => {
