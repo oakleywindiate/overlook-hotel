@@ -10,15 +10,15 @@ const amountSpent = (ctx, value, total) =>    {
               label: 'Amount',
               data: [value, total],
               backgroundColor: [
-                  '#1e7898',
-                  '#FFF',
+                  '#007A5C',
+                  '#035D63',
               ],
           }]
       },
       options: {
           maintainAspectRatio: false,
           responsive: true,
-          cutout: 70,
+          cutout: 270,
           borderWidth: 1,
           borderColor: '#000000',
           hoverOffset: 0,
