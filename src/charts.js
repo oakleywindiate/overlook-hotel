@@ -18,7 +18,7 @@ const amountSpent = (ctx, value, total) =>    {
       options: {
           maintainAspectRatio: false,
           responsive: true,
-          cutout: 70,
+          cutout: 270,
           borderWidth: 1,
           borderColor: '#000000',
           hoverOffset: 0,
